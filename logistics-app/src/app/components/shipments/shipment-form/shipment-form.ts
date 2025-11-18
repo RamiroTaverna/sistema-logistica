@@ -1,4 +1,4 @@
-import { NgIf } from '@angular/common';
+import { NgIf, NgFor } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
@@ -8,7 +8,7 @@ import { ShipmentService } from '../../../services/shipment';
 @Component({
   selector: 'app-shipment-form',
   standalone: true,
-  imports: [ReactiveFormsModule, NgIf, RouterLink],
+  imports: [ReactiveFormsModule, NgIf, NgFor, RouterLink],
   templateUrl: './shipment-form.html',
   styleUrl: './shipment-form.css',
 })
