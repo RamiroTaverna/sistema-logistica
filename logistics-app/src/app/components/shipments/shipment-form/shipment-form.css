@@ -1,3 +1,8 @@
 .form-grid {
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
 }
+
+.form-control select {
+  background: #fff;
+  color: #111827;
+}

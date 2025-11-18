@@ -1,6 +1,6 @@
 <section class="page-header">
   <div>
-    <h1>{{ isEdit ? 'Editar envío' : 'Crear envío' }}</h1>
+    <h1>{{ isEdit ? 'Editar envio' : 'Crear envio' }}</h1>
     <p class="muted">Formulario reactivo con validaciones y persistencia simulada en localStorage.</p>
   </div>
   <a class="button secondary" routerLink="/shipments">Volver</a>
@@ -41,6 +41,7 @@
     <div class="form-control">
       <label for="status">Estado</label>
       <select id="status" formControlName="status">
+        <option value="" disabled>-- Selecciona --</option>
         <option *ngFor="let status of statuses" [value]="status">{{ status }}</option>
       </select>
     </div>
@@ -48,6 +49,7 @@
     <div class="form-control">
       <label for="priority">Prioridad</label>
       <select id="priority" formControlName="priority">
+        <option value="" disabled>-- Selecciona --</option>
         <option *ngFor="let priority of priorities" [value]="priority">{{ priority }}</option>
       </select>
     </div>
