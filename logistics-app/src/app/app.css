@@ -1,7 +1,7 @@
 .app-shell {
   min-height: 100vh;
-  background: #f5f7fb;
-  color: #1f2933;
+  background: var(--bg);
+  color: var(--text);
 }
 
 .app-main {

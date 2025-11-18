@@ -8,6 +8,7 @@ Aplicación web hecha 100% con Angular (standalone) para gestionar envíos de co
 - Dashboard con métricas rápidas (totales, entregados, en transito, demorados) y próximas entregas.
 - Login simulado (rol `admin` si el usuario es `admin`).
 - Datos persistidos en `localStorage` para mantener cambios al recargar.
+- Modo oscuro con toggle en el navbar (se recuerda en `localStorage`).
 
 ## Estructura recomendada
 ```

@@ -13,6 +13,7 @@
   </div>
 
   <div class="nav-right" *ngIf="user$ | async as user; else guest">
+    <button class="theme-toggle" (click)="toggleTheme()">{{ theme$ | async }} mode</button>
     <span class="user-pill">
       <span class="status-dot"></span>
       {{ user.username }} · {{ user.role }}
