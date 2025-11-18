@@ -8,8 +8,8 @@
       </div>
     </div>
     <a routerLink="/dashboard" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Dashboard</a>
-    <a routerLink="/shipments" routerLinkActive="active">Envios</a>
-    <a routerLink="/shipments/new" routerLinkActive="active">Crear envio</a>
+    <a routerLink="/shipments" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Envios</a>
+    <a routerLink="/shipments/new" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Crear envio</a>
   </div>
 
   <div class="nav-right" *ngIf="user$ | async as user; else guest">
