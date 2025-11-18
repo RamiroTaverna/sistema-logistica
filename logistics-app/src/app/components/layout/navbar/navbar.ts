@@ -1,5 +1,5 @@
 import { Component, inject } from '@angular/core';
-import { RouterLink, RouterLinkActive } from '@angular/router';
+import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { AsyncPipe, NgIf } from '@angular/common';
 import { AuthService } from '../../../services/auth';
 
@@ -12,9 +12,11 @@ import { AuthService } from '../../../services/auth';
 })
 export class NavbarComponent {
   private auth = inject(AuthService);
+  private router = inject(Router);
   user$ = this.auth.userChanges;
 
   logout() {
     this.auth.logout();
+    this.router.navigate(['/login']);
   }
 }
