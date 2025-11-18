@@ -5,7 +5,7 @@ Aplicación web hecha 100% con Angular (standalone) para gestionar envíos de co
 ## Funcionalidades
 - Listado de envíos con búsqueda, filtro por estado y paginación simulada.
 - CRUD con formularios reactivos y validaciones.
--.Dashboard con métricas rápidas (totales, entregados, en transito, demorados) y próximas entregas.
+- Dashboard con métricas rápidas (totales, entregados, en transito, demorados) y próximas entregas.
 - Login simulado (rol `admin` si el usuario es `admin`).
 - Datos persistidos en `localStorage` para mantener cambios al recargar.
 
@@ -75,6 +75,8 @@ npm run build      # build de producción en dist/logistics-app
 - **Eliminar envío:** confirmar y revisar métricas.
 - **Filtros:** buscar por tracking/origen/destino + filtro de estado; probar paginación.
 - **Persistencia:** recargar y comprobar que los datos creados/edición se mantienen (localStorage).
+- **Navbar:** mostrar opciones solo logueado; botón salir lleva a login; oculto en `/login`.
+- **Selects de estado/prioridad:** deben mostrar opciones; si no, limpiar localStorage para recargar seeds.
 
 ## Capturas sugeridas (puedes usar Lightshot y pegar los links)
 - Dashboard (tarjetas + próximas entregas). Ej: https://prnt.sc/XXXXX
