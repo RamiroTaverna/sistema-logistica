@@ -92,7 +92,8 @@ export class ShipmentService {
   private bootstrapData() {
     const persisted = localStorage.getItem(this.storageKey);
     if (persisted) {
-      this.shipments$.next(JSON.parse(persisted));
+      const parsed = JSON.parse(persisted) as Shipment[];
+      this.persist(this.normalizeAll(parsed));
       return;
     }
 
@@ -101,7 +102,7 @@ export class ShipmentService {
       .pipe(
         catchError(() => of(this.seedData()))
       )
-      .subscribe((data) => this.persist(data ?? this.seedData()));
+      .subscribe((data) => this.persist(this.normalizeAll(data ?? this.seedData())));
   }
 
   private seedData(): Shipment[] {
@@ -182,5 +183,22 @@ export class ShipmentService {
         notes: 'Seguro contratado',
       },
     ];
+  }
+
+  private normalizeAll(list: Shipment[]): Shipment[] {
+    return list.map((s) => this.normalizeShipment(s));
+  }
+
+  private normalizeShipment(shipment: Shipment): Shipment {
+    const statusMap: Record<string, ShipmentStatus> = {
+      'En tránsito': 'En transito',
+      'En transito': 'En transito',
+      'Entregado': 'Entregado',
+      'Demorado': 'Demorado',
+      'Pendiente': 'Pendiente',
+      'Cancelado': 'Cancelado',
+    };
+    const normalizedStatus = statusMap[shipment.status] ?? 'Pendiente';
+    return { ...shipment, status: normalizedStatus };
   }
 }
