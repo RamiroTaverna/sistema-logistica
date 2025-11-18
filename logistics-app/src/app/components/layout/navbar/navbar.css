@@ -38,8 +38,8 @@
 
 .nav-left a.active,
 .nav-left a:hover {
-  background: rgba(255, 255, 255, 0.08);
-  color: #fff;
+  background: rgba(96, 165, 250, 0.2);
+  color: #e0e7ff;
 }
 
 .brand {
