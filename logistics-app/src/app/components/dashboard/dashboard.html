@@ -1,0 +1,85 @@
+<section class="page-header">
+  <div>
+    <h1>Dashboard logístico</h1>
+    <p class="muted">Seguimiento rápido de envíos, prioridades y próximos vencimientos.</p>
+  </div>
+  <a class="button" routerLink="/shipments">Ver listado</a>
+</section>
+
+<div class="grid cols-3">
+  <div class="card stat-card" *ngIf="stats$ | async as stats">
+    <div class="stat-title">Envíos totales</div>
+    <div class="stat-value">{{ stats.total }}</div>
+    <p class="muted">Incluye pendientes, en tránsito y cerrados.</p>
+  </div>
+  <div class="card stat-card" *ngIf="stats$ | async as stats">
+    <div class="stat-title">Entregados</div>
+    <div class="stat-value text-success">{{ stats.entregados }}</div>
+    <p class="muted">Cerrados con entrega conforme.</p>
+  </div>
+  <div class="card stat-card" *ngIf="stats$ | async as stats">
+    <div class="stat-title">En tránsito</div>
+    <div class="stat-value text-primary">{{ stats.transito }}</div>
+    <p class="muted">Incluye rutas activas.</p>
+  </div>
+  <div class="card stat-card" *ngIf="stats$ | async as stats">
+    <div class="stat-title">Demorados</div>
+    <div class="stat-value text-warning">{{ stats.demorados }}</div>
+    <p class="muted">Requieren acción / aviso al cliente.</p>
+  </div>
+</div>
+
+<div class="grid cols-2 margin-top">
+  <div class="card">
+    <div class="card-header">
+      <h3>Prioridades</h3>
+      <span class="pill">Simulación</span>
+    </div>
+    <ng-container *ngIf="prioritySummary$ | async as summary">
+      <div class="priority-row">
+        <span>Alta</span>
+        <div class="bar"><span [style.width.%]="summary.alta * 15" class="bar-fill high"></span></div>
+        <strong>{{ summary.alta }}</strong>
+      </div>
+      <div class="priority-row">
+        <span>Media</span>
+        <div class="bar"><span [style.width.%]="summary.media * 15" class="bar-fill mid"></span></div>
+        <strong>{{ summary.media }}</strong>
+      </div>
+      <div class="priority-row">
+        <span>Baja</span>
+        <div class="bar"><span [style.width.%]="summary.baja * 15" class="bar-fill low"></span></div>
+        <strong>{{ summary.baja }}</strong>
+      </div>
+    </ng-container>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <h3>Próximas entregas</h3>
+      <span class="pill">Top 5</span>
+    </div>
+    <table class="table compact">
+      <thead>
+        <tr>
+          <th>Tracking</th>
+          <th>Destino</th>
+          <th>ETA</th>
+          <th>Estado</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let shipment of nextDeliveries$ | async">
+          <td>{{ shipment.trackingCode }}</td>
+          <td>{{ shipment.destination }}</td>
+          <td>{{ shipment.eta | date: 'dd/MM' }}</td>
+          <td>
+            <span class="badge" [ngClass]="statusColor(shipment.status)">
+              {{ shipment.status }}
+            </span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

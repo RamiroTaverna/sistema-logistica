@@ -1,0 +1,17 @@
+<div class="auth-card card">
+  <h2>Ingreso simulado</h2>
+  <p class="muted">Escribe cualquier usuario y clave. Usuario "admin" obtiene rol administrador.</p>
+
+  <form [formGroup]="form" (ngSubmit)="onSubmit()" class="form-grid">
+    <div class="form-control">
+      <label>Usuario</label>
+      <input formControlName="username" placeholder="admin" />
+    </div>
+    <div class="form-control">
+      <label>Contraseña</label>
+      <input type="password" formControlName="password" placeholder="••••••" />
+    </div>
+    <div class="form-error" *ngIf="error">{{ error }}</div>
+    <button class="button" style="width: 100%; margin-top: 0.5rem" type="submit">Ingresar</button>
+  </form>
+</div>

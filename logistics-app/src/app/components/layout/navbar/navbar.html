@@ -1,0 +1,28 @@
+<nav class="navbar">
+  <div class="nav-left">
+    <div class="brand">
+      <span class="logo-dot"></span>
+      <div>
+        <div class="brand-title">LogiTrack</div>
+        <small>Gestion de paquetes</small>
+      </div>
+    </div>
+    <a routerLink="/dashboard" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Dashboard</a>
+    <a routerLink="/shipments" routerLinkActive="active">Envios</a>
+    <a routerLink="/shipments/new" routerLinkActive="active">Crear envio</a>
+  </div>
+
+  <div class="nav-right" *ngIf="user$ | async as user; else guest">
+    <span class="user-pill">
+      <span class="status-dot"></span>
+      {{ user.username }} · {{ user.role }}
+    </span>
+    <button class="button secondary" (click)="logout()">Salir</button>
+  </div>
+
+  <ng-template #guest>
+    <div class="nav-right">
+      <a class="button" routerLink="/login">Ingresar</a>
+    </div>
+  </ng-template>
+</nav>

@@ -1,0 +1,65 @@
+<section class="page-header">
+  <div>
+    <h1>Envíos</h1>
+    <p class="muted">CRUD simulado con filtros y paginación local.</p>
+  </div>
+  <div class="toolbar">
+    <input type="search" class="search" placeholder="Buscar por tracking, cliente o ciudad" (input)="onSearch($any($event.target).value)" />
+    <select (change)="onFilterByStatus($any($event.target).value)">
+      <option value="">Todos</option>
+      <option *ngFor="let status of statuses" [value]="status">{{ status }}</option>
+    </select>
+    <a class="button" routerLink="/shipments/new">+ Nuevo envío</a>
+  </div>
+</section>
+
+<div class="card">
+  <div class="table-wrapper">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Tracking</th>
+          <th>Origen → Destino</th>
+          <th>Cliente</th>
+          <th>Estado</th>
+          <th>Prioridad</th>
+          <th>Peso</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let shipment of paged$ | async">
+          <td>
+            <div class="bold">{{ shipment.trackingCode }}</div>
+            <small class="muted">ETA {{ shipment.eta | date: 'dd/MM' }}</small>
+          </td>
+          <td>
+            <div class="bold">{{ shipment.origin }}</div>
+            <small class="muted">→ {{ shipment.destination }}</small>
+          </td>
+          <td>
+            <div>{{ shipment.recipient }}</div>
+            <small class="muted">Remitente: {{ shipment.sender }}</small>
+          </td>
+          <td>
+            <span class="badge" [ngClass]="shipment.status === 'Entregado' ? 'success' : shipment.status === 'Demorado' ? 'warning' : 'info'">
+              {{ shipment.status }}
+            </span>
+          </td>
+          <td><span class="pill">{{ shipment.priority }}</span></td>
+          <td>{{ shipment.weightKg }} kg</td>
+          <td class="actions">
+            <a routerLink="/shipments/{{ shipment.id }}/edit" class="button secondary">Editar</a>
+            <button class="button danger" (click)="onDelete(shipment)">Eliminar</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="pagination" *ngIf="totalPages$ | async as totalPages">
+    <button class="button secondary" (click)="prevPage()" [disabled]="(page$ | async) === 1">Anterior</button>
+    <span>Página {{ page$ | async }} / {{ totalPages }}</span>
+    <button class="button secondary" (click)="nextPage(totalPages)" [disabled]="(page$ | async) === totalPages">Siguiente</button>
+  </div>
+</div>

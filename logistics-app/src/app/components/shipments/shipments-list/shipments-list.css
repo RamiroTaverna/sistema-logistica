@@ -1,0 +1,42 @@
+.toolbar input,
+.toolbar select {
+  padding: 0.65rem 0.8rem;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: #fff;
+}
+
+.toolbar input {
+  min-width: 240px;
+}
+
+.table-wrapper {
+  overflow-x: auto;
+}
+
+.actions {
+  display: flex;
+  gap: 0.35rem;
+  justify-content: flex-end;
+}
+
+.pagination {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 1rem;
+  gap: 1rem;
+}
+
+.bold {
+  font-weight: 700;
+}
+
+.table .muted {
+  font-size: 0.9rem;
+}
+
+.table th:last-child,
+.table td:last-child {
+  text-align: right;
+}
